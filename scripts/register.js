@@ -12,45 +12,59 @@ let salon={
         close:"5:00 p.m."
     },
     phone:"555-555-555",
-    pets:[
-        {
-            name:"Scooby",
-            age:50,
-            gender:"Male",
-            breed:"Dane",
-            service:"Grooming",
-            owner:"Shaggy",
-            phone:"888-888-888"        
-        },
-        {
-            name:"Scrappy",
-            age:40,
-            gender:"Male",
-            breed:"Mixed",
-            service:"Grooming",
-            owner:"Shaggy",
-            phone:"888-888-888"
-        },
-        {
-            name:"Speedy Gonzalez",
-            age:70,
-            gender:"Male",
-            breed:"Mixed",
-            service:"Nails cut",
-            owner:"Bugs Bunny",
-            phone:"888-888-888"
-        }
-    ]
+    pets:[]
 }
-
-console.log(salon.pets[0]); //displaying scooby
 
 function displaySalonInfo(){
     let tmp=`
-    <p>Welcom to the ${salon.name} located in ${salon.address.street}</p>
+    <p>Welcome to the ${salon.name} located in ${salon.address.street}</p>
     <p></p>
     `;
     document.getElementById("info").innerHTML=tmp;
+    console.log("displaying");
 }
 
-displaySalonInfo();
+
+
+//create the Pet constructor
+//name, age, gender, breed, service, owner, phone
+function Pet(name,age,gender,breed,service,owner,phone){
+    this.name=name;
+    this.age=age;
+    this.gender=gender;
+    this.breed=breed;
+    this.service=service;
+    this.ownersName=owner;//*
+    this.contactPhone=phone;//*
+}
+
+// creating default pets
+let scooby = new Pet("Scooby",50,"Male","Dane","Grooming","Shaggy","555-555-55");
+let scrappy = new Pet("Scrappy",40,"Male","Mixed","Nails cut","Shaggy","555-555-55");
+
+//register pets
+function register(){
+    console.log("Registering");
+    //get the info from the inputs ***getElementById().value
+    let petName=document.getElementById("txtName").value;
+    let petAge=document.getElementById("txtAge").value;
+    let petGender=document.getElementById("txtGender").value;
+    let petBreed=document.getElementById("txtBreed").value;
+    let petService=document.getElementById("selService").value;
+    //create the object using the constructor
+    let newPet = new Pet(petName,petAge,petGender,petBreed,petService);
+    // push the object in on the array
+    salon.pets.push(newPet);
+    // display it on the console
+    console.log(newPet);
+    console.log(salon.pets);
+}
+
+
+function init(){
+    //hook events, triggered events
+    displaySalonInfo();
+    salon.pets.push(scooby,scrappy);
+}
+
+window.onload=init;

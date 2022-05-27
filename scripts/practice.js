@@ -19,24 +19,27 @@ let student = {
 // document.write(student.address);
 
 let products = [];
+//object literal
+// let product1={
+//     name:"Laptop",
+//     description:"HP laptop 14'' core i7",
+//     price:200
+// }
 
-let product1={
-    name:"Laptop",
-    description:"HP laptop 14'' core i7",
-    price:200
-}
-let product2={
-    name:"Laptop",
-    description:"DELL laptop 14'' core i7",
-    price:250
-}
-let product3={
-    name:"PC",
-    description:" PC AMD",
-    price:300
+//constructor is special function
+//<----//////// local vars ----->
+function Product(n,d,p){
+    this.name=n;
+    this.description=d;
+    this.price=p;
 }
 
-products.push(product1,product2,product3);
+let product1 = new Product("Speaker","It does't have support for iOS",20.50);
+let product2 = new Product("Laptop","HP",100.00);
+
+
+console.log(product1,product2);
+//products.push(product1,product2,product3);
 
 function displayNames(){
     for(let i=0;i<products.length;i++){
@@ -44,4 +47,4 @@ function displayNames(){
     }
 }
 
-displayNames();
+//displayNames();
